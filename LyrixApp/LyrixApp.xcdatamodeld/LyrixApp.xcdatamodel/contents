@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Event" representedClassName="Event" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G1212" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="LArtist" representedClassName="LArtist">
+        <attribute name="lId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES">
+            <userInfo/>
+        </attribute>
+        <attribute name="lImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="lName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LSongs" inverseName="artist" inverseEntity="LSongs" syncable="YES"/>
+        <userInfo/>
+    </entity>
+    <entity name="LCategory" representedClassName="LCategory" syncable="YES">
+        <attribute name="lDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="category" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LSongs" inverseName="category" inverseEntity="LSongs" syncable="YES"/>
+    </entity>
+    <entity name="LSongs" representedClassName="LSongs" syncable="YES">
+        <attribute name="lId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="limage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="lLyrics" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="artist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LArtist" inverseName="songs" inverseEntity="LArtist" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LCategory" inverseName="category" inverseEntity="LCategory" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="261" positionY="189" width="128" height="60"/>
+        <element name="LArtist" positionX="261" positionY="189" width="128" height="28"/>
+        <element name="LSongs" positionX="484" positionY="-9" width="128" height="28"/>
+        <element name="LCategory" positionX="727" positionY="279" width="128" height="28"/>
     </elements>
 </model>
