@@ -26,7 +26,7 @@
     </entity>
     <elements>
         <element name="LArtist" positionX="261" positionY="189" width="128" height="28"/>
-        <element name="LSongs" positionX="484" positionY="-9" width="128" height="28"/>
         <element name="LCategory" positionX="727" positionY="279" width="128" height="28"/>
+        <element name="LSongs" positionX="484" positionY="-9" width="128" height="150"/>
     </elements>
 </model>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F50534C20B875120035C78E /* SongDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F50534B20B875120035C78E /* SongDetailsViewController.swift */; };
 		0F7AF13C20B1776500F9119C /* songModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7AF13B20B1776500F9119C /* songModel.swift */; };
 		0F881F9E20B1284200F0E023 /* LSongs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F881F9820B1284200F0E023 /* LSongs+CoreDataClass.swift */; };
 		0F881F9F20B1284200F0E023 /* LSongs+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F881F9920B1284200F0E023 /* LSongs+CoreDataProperties.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F50534B20B875120035C78E /* SongDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailsViewController.swift; sourceTree = "<group>"; };
 		0F7AF13B20B1776500F9119C /* songModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = songModel.swift; sourceTree = "<group>"; };
 		0F881F9820B1284200F0E023 /* LSongs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LSongs+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0F881F9920B1284200F0E023 /* LSongs+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LSongs+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				AC2D9B3320AF431100C99893 /* AddSongViewController.swift */,
 				0F7AF13B20B1776500F9119C /* songModel.swift */,
 				0FEDC48720B7361F00FDC1D4 /* SongsTableViewCell.swift */,
+				0F50534B20B875120035C78E /* SongDetailsViewController.swift */,
 			);
 			path = LyrixApp;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				AC2F52C420A35C620006CBF0 /* AppDelegate.swift in Sources */,
 				AC2F52DB20A35D5B0006CBF0 /* ArtistListViewController.swift in Sources */,
 				AC2F52C920A35C620006CBF0 /* MasterViewController.swift in Sources */,
+				0F50534C20B875120035C78E /* SongDetailsViewController.swift in Sources */,
 				AC2F52CB20A35C620006CBF0 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

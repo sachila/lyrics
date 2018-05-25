@@ -30,9 +30,9 @@ class ArtistListViewController: UIViewController {
         
         let context = appDelegate.persistentContainer.viewContext
         let result = LArtist.GetAllArtists(context: context)
-        for data in result  {
-            print(data.lName)
-        }
+//        for data in result  {
+//            print(data.lName)
+//        }
     }
     
 

@@ -21,13 +21,14 @@ public class LSongs: NSManagedObject {
         let artists = LArtist.SearchArtistsByName(name:song.artistName!, context: context)
         let category = LCategory.SearchCategoryByName(name: song.categoryName!, context: context)
         
-        let random = drand48()  * 100000000000
+        let random =  Int(arc4random_uniform(99999) + 100)
         print(random)
         
         newSong.setValue(random, forKey: "lId")
         newSong.setValue(song.name, forKey: "lName")
         newSong.setValue(song.url, forKey: "lUrl")
         newSong.setValue(song.lyrics, forKey: "lLyrics")
+        newSong.setValue(song.image, forKey: "limage")
         newSong.setValue(artists[0], forKey: "artist")
         newSong.setValue(category[0], forKey: "category")
         // need to add image
@@ -57,7 +58,7 @@ public class LSongs: NSManagedObject {
     }
     
     class func GetAllSongsID(id:String, context: NSManagedObjectContext) -> LSongs{
-        var data:LSongs?
+        var data:LSongs? = nil
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "LSongs")
         request.predicate = NSPredicate(format: "lId == %@", id)
         request.returnsObjectsAsFaults = false
@@ -75,6 +76,21 @@ public class LSongs: NSManagedObject {
         var data:[LSongs] = []
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "LSongs")
         request.predicate = NSPredicate(format: "lName == %@", name)
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try context.fetch(request)
+            data = result as! [LSongs]
+            
+        } catch {
+            print("Failed Loading Songs by name")
+        }
+        return data
+    }
+    class func QuerySongsByName(name:String, context: NSManagedObjectContext) -> [LSongs]{
+        var data:[LSongs] = []
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "LSongs")
+        request.predicate =  NSPredicate(format: "lName contains[c] %@", name)
         request.returnsObjectsAsFaults = false
         
         do {

@@ -8,11 +8,37 @@
 
 import UIKit
 
-class SongListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SongListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var songTable: UITableView!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var result: [LSongs] = [];
-    @IBOutlet weak var songTable: UITableView!
+    var rowId: String?
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            if segue.identifier == "seague"{
+                let recieve = segue.destination as! SongDetailsViewController
+                if self.rowId != nil{
+                    recieve.loadById(id: self.rowId!)
+                }
+            }
+        })
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        if searchText != "" {
+            let context = appDelegate.persistentContainer.viewContext
+            result = LSongs.QuerySongsByName(name: searchText, context: context)
+        }else{
+            loadSongs()
+        } 
+        songTable.reloadData()
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        rowId = String(result[indexPath.row].lId )
+    }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return (result.count)
@@ -20,14 +46,18 @@ class SongListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath ) as! SongsTableViewCell
-        cell.songName.text = result[indexPath.row].lName
+        if result.count > 0{
+            cell.songName.text = result[indexPath.row].lName
+            if result[indexPath.row].limage != nil{
+                cell.imageView?.image = UIImage(data:result[indexPath.row].limage! as Data,scale:1.0)
+            }
+        }
         return (cell)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         loadSongs()
-
-        // Do any additional setup after loading the view.
+        searchBar.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,16 +66,14 @@ class SongListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func loadSongs(){
-        
         let context = appDelegate.persistentContainer.viewContext
         result = LSongs.GetAllSongs(context: context)
         for data in result  {
-            print(data.lName)
-        } 
+            print(data.lId  )
+        }
     }
     
     func removeSong(){
-        
         let context = appDelegate.persistentContainer.viewContext
         let result = LSongs.RemoveSongtById(id: "3", context: context)
         if result {

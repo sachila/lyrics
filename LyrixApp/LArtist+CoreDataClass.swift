@@ -18,7 +18,7 @@ public class LArtist: NSManagedObject {
         let entity = NSEntityDescription.entity(forEntityName: "LArtist", in: context)
         let newArtist = NSManagedObject(entity: entity!, insertInto: context)
         
-        let random = drand48()  * 100000000000
+        let random =  Int(arc4random_uniform(99999) + 100)
         newArtist.setValue(random, forKey: "lId")
         newArtist.setValue(name, forKey: "lName")
         // need to add image

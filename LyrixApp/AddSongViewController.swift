@@ -8,13 +8,16 @@
 
 import UIKit
 
-class AddSongViewController: UIViewController {
+class AddSongViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var Artist: UITextField!
     @IBOutlet weak var category: UITextField!
     @IBOutlet weak var songName: UITextField!
     @IBOutlet weak var url: UITextField!
     @IBOutlet weak var lyrics: UITextView!
+    
+    @IBOutlet weak var imageView: UIImageView!
+    let imagePicker = UIImagePickerController()
     
     var artistValid: Bool = false
     var categoryValid: Bool = false
@@ -23,9 +26,35 @@ class AddSongViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCategory()
- 
+        imagePicker.delegate = self
     }
 
+    @IBAction func loadImages(_ sender: UIButton) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+
+    }
+    // MARK: - UIImagePickerControllerDelegate Methods
+//    public func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+//        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+//            imageView.contentMode = .scaleAspectFit
+//            imageView.image = pickedImage
+//        }
+//
+//        dismiss(animated: true, completion: nil)
+//    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imageView.contentMode = .scaleAspectFit
+            imageView.image = pickedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
     @IBAction func checkArtist(_ sender: Any) {
         
         let context = appDelegate.persistentContainer.viewContext
@@ -75,7 +104,11 @@ class AddSongViewController: UIViewController {
         songObj.url = url.text!
         songObj.artistName = Artist.text!
         songObj.categoryName = category.text!
-        
+        if imageView.image != nil{
+            songObj.image = UIImagePNGRepresentation(imageView.image!)! as NSData
+            
+        }
+      
         let res = LSongs.SaveSong(song: songObj, context: context)
         if res {
             let refreshAlert = UIAlertController(title: "Saved", message: "successfully save the song", preferredStyle: UIAlertControllerStyle.alert)
@@ -104,6 +137,7 @@ class AddSongViewController: UIViewController {
         songName.text = ""
         url.text = ""
         lyrics.text = ""
+        
     }
     
 

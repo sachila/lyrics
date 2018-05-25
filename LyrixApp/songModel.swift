@@ -12,7 +12,7 @@ import Foundation
 class songs {
     public var id: Int16?
     public var name: String?
-    public var image: Data?
+    public var image: NSData?
     public var url: String?
     public var lyrics: String?
     public var artistName: String?
