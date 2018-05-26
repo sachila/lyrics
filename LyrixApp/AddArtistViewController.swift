@@ -11,15 +11,24 @@ import CoreData
 
 class AddArtistViewController: UIViewController {
 
+    @IBOutlet weak var artistName: UITextField!
+    
+    @IBOutlet weak var artistImage: UIImageView!
+    let imagePicker = UIImagePickerController()
+    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        saveArtist()
+       // saveArtist()
 
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func btnAddSongClick(_ sender: UIButton) {
+        saveArtist()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -27,11 +36,31 @@ class AddArtistViewController: UIViewController {
     
     func saveArtist() {
         let context = appDelegate.persistentContainer.viewContext
-        let res = LArtist.SaveArtists(name: "sample1", context: context)
+        
+        let artistObj =  artists();
+        artistObj.artistName = artistName.text!
+        if artistImage.image != nil{
+            artistObj.artistImage = UIImagePNGRepresentation(artistImage.image!)! as NSData
+            
+        }
+        
+        let res = LArtist.SaveArtists(artist: artistObj, context: context)
+        
         if res {
-            print("success")
+            let refreshAlert = UIAlertController(title: "Saved", message: "successfully save the artist", preferredStyle: UIAlertControllerStyle.alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                self.reset()
+            }))
+            
+            present(refreshAlert, animated: true, completion: nil)
         }
    }
+    
+    
+    func reset(){
+        artistName.text = ""
+    }
     
     /*
     // MARK: - Navigation

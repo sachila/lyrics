@@ -13,15 +13,15 @@ import CoreData
 @objc(LArtist)
 public class LArtist: NSManagedObject {
     
-    class func SaveArtists(name: String, context: NSManagedObjectContext)-> Bool {
+    class func SaveArtists(artist: artists, context: NSManagedObjectContext)-> Bool {
         var item = true;
         let entity = NSEntityDescription.entity(forEntityName: "LArtist", in: context)
         let newArtist = NSManagedObject(entity: entity!, insertInto: context)
         
         let random =  Int(arc4random_uniform(99999) + 100)
-        newArtist.setValue(random, forKey: "lId")
-        newArtist.setValue(name, forKey: "lName")
-        // need to add image
+        newArtist.setValue(random, forKey: "aId")
+        newArtist.setValue(artist.artistName, forKey: "aName")
+        newArtist.setValue(artist.artistImage, forKey: "aImage")
         
         do {
             try context.save()
@@ -51,7 +51,7 @@ public class LArtist: NSManagedObject {
     class func GetArtistByID(id:String, context: NSManagedObjectContext) -> LArtist{
         var data:LArtist?
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "LArtist")
-        request.predicate = NSPredicate(format: "lId == %@", id)
+        request.predicate = NSPredicate(format: "aId == %@", id)
         request.returnsObjectsAsFaults = false
         
         do {
@@ -67,7 +67,7 @@ public class LArtist: NSManagedObject {
     class func SearchArtistsByName(name:String, context: NSManagedObjectContext) -> [LArtist]{
         var data:[LArtist] = []
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "LArtist")
-        request.predicate = NSPredicate(format: "lName == %@", name)
+        request.predicate = NSPredicate(format: "aName == %@", name)
         request.returnsObjectsAsFaults = false
         
         do {
@@ -83,7 +83,7 @@ public class LArtist: NSManagedObject {
     class func RemoveArtistById(id:String, context: NSManagedObjectContext) -> Bool{
         var item = false;
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "LArtist")
-        request.predicate = NSPredicate(format: "lId == %@", id)
+        request.predicate = NSPredicate(format: "aId == %@", id)
         request.returnsObjectsAsFaults = false
         
         do {

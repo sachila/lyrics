@@ -28,6 +28,8 @@
 		AC2F52D020A35C620006CBF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC2F52CF20A35C620006CBF0 /* Assets.xcassets */; };
 		AC2F52D320A35C620006CBF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2F52D120A35C620006CBF0 /* LaunchScreen.storyboard */; };
 		AC2F52DB20A35D5B0006CBF0 /* ArtistListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2F52DA20A35D5B0006CBF0 /* ArtistListViewController.swift */; };
+		AC50987720B913F50045C96C /* artistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC50987620B913F50045C96C /* artistModel.swift */; };
+		AC50987B20B94EA80045C96C /* ArtistsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC50987A20B94EA80045C96C /* ArtistsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		AC2F52D220A35C620006CBF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC2F52D420A35C620006CBF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC2F52DA20A35D5B0006CBF0 /* ArtistListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistListViewController.swift; sourceTree = "<group>"; };
+		AC50987620B913F50045C96C /* artistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = artistModel.swift; sourceTree = "<group>"; };
+		AC50987A20B94EA80045C96C /* ArtistsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 				0F7AF13B20B1776500F9119C /* songModel.swift */,
 				0FEDC48720B7361F00FDC1D4 /* SongsTableViewCell.swift */,
 				0F50534B20B875120035C78E /* SongDetailsViewController.swift */,
+				AC50987620B913F50045C96C /* artistModel.swift */,
+				AC50987A20B94EA80045C96C /* ArtistsTableViewCell.swift */,
 			);
 			path = LyrixApp;
 			sourceTree = "<group>";
@@ -188,6 +194,7 @@
 				AC2D9B2E20AF2C9300C99893 /* MainMenuViewController.swift in Sources */,
 				0F7AF13C20B1776500F9119C /* songModel.swift in Sources */,
 				AC2D9B3420AF431100C99893 /* AddSongViewController.swift in Sources */,
+				AC50987720B913F50045C96C /* artistModel.swift in Sources */,
 				0F881FA020B1284200F0E023 /* LCategory+CoreDataClass.swift in Sources */,
 				0F881FA220B1284200F0E023 /* LArtist+CoreDataClass.swift in Sources */,
 				0F881FA120B1284200F0E023 /* LCategory+CoreDataProperties.swift in Sources */,
@@ -201,6 +208,7 @@
 				AC2F52DB20A35D5B0006CBF0 /* ArtistListViewController.swift in Sources */,
 				AC2F52C920A35C620006CBF0 /* MasterViewController.swift in Sources */,
 				0F50534C20B875120035C78E /* SongDetailsViewController.swift in Sources */,
+				AC50987B20B94EA80045C96C /* ArtistsTableViewCell.swift in Sources */,
 				AC2F52CB20A35C620006CBF0 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
