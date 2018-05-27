@@ -171,8 +171,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 tableView.insertRows(at: [newIndexPath!], with: .fade)
             case .delete:
                 tableView.deleteRows(at: [indexPath!], with: .fade)
-            case .update:
-                configureCell(tableView.cellForRow(at: indexPath!)!, withEvent: anObject as! UIEvent)
+        case .update: break 
             case .move:
                 configureCell(tableView.cellForRow(at: indexPath!)!, withEvent: anObject as! UIEvent)
                 tableView.moveRow(at: indexPath!, to: newIndexPath!)

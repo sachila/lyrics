@@ -17,6 +17,9 @@ class SongListViewController: UIViewController, UITableViewDataSource, UITableVi
     var result: [LSongs] = [];
     var rowId: String?
     
+    var fromCategory: Bool = false
+    var categoryId: String!
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             if segue.identifier == "seague"{
@@ -59,6 +62,12 @@ class SongListViewController: UIViewController, UITableViewDataSource, UITableVi
         loadSongs()
         searchBar.delegate = self
     }
+    
+    func setFromCategory(val: Bool, id: String){
+        self.fromCategory = val
+        self.categoryId = id
+        loadSongs()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -66,10 +75,19 @@ class SongListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func loadSongs(){
-        let context = appDelegate.persistentContainer.viewContext
-        result = LSongs.GetAllSongs(context: context)
-        for data in result  {
-            print(data.lId  )
+        if !fromCategory{
+            let context = appDelegate.persistentContainer.viewContext
+            result = LSongs.GetAllSongs(context: context)
+            for data in result  {
+                print(data.lId  )
+            }
+        }else{
+            let context = appDelegate.persistentContainer.viewContext
+            result = LSongs.GetSongsByCategoryId(id: categoryId, context: context)
+            for data in result  {
+                print(data.lName )
+            }
+            songTable.reloadData()
         }
     }
     

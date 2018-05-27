@@ -57,6 +57,22 @@ public class LSongs: NSManagedObject {
         return data
     }
     
+    class func ClearAll(context: NSManagedObjectContext)  {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "LSongs")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try context.fetch(request) as! [NSManagedObject]
+            for item in result {
+                context.delete(item)
+            }
+            try context.save()
+            
+        } catch {
+            print("Failed Loading Songs")
+        }
+    }
+    
     class func GetAllSongsID(id:String, context: NSManagedObjectContext) -> LSongs{
         var data:LSongs? = nil
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "LSongs")
@@ -143,7 +159,7 @@ public class LSongs: NSManagedObject {
         var data:[LSongs] = []
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "LSongs")
         let category = LCategory.GetCategoriesByID(id: id, context: context)
-        request.predicate = NSPredicate(format: "category == %@", category)
+        request.predicate = NSPredicate(format: "category.lId == %@", id)
         request.returnsObjectsAsFaults = false
         
         do {

@@ -1,28 +1,18 @@
 //
-//  MainMenuViewController.swift
+//  func loadSongs(){         let context = appDelegate.persistentContainer.viewContext         result = LSongs.GetAllSongs(context: context)         for data in result  {             print(data.swift
 //  LyrixApp
 //
-//  Created by Chintaka Wijetunga on 5/18/18.
+//  Created by sachila on 5/27/18.
 //  Copyright © 2018 Infinity. All rights reserved.
 //
 
 import UIKit
 
-class MainMenuViewController: UIViewController {
+class func_loadSongs____________let_context___appDelegate_persistentContainer_viewContext_________result___LSongs_GetAllSongs_context__context__________for_data_in_result________________print_data: UIViewController {
 
-    @IBOutlet weak var btnAddArtist: UIButton!
-    @IBOutlet weak var btnArtistList: UIButton!
-    @IBOutlet weak var btnAddSong: UIButton!
-    @IBOutlet weak var btnSongList: UIButton!
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let context = appDelegate.persistentContainer.viewContext
-        LCategory.SetDefaultValues(context: context)
-        //LSongs.ClearAll(context: context)
-        
         // Do any additional setup after loading the view.
     }
 
@@ -31,9 +21,7 @@ class MainMenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onClickButton(_ sender: UIButton) {
-    }
-    
+
     /*
     // MARK: - Navigation
 

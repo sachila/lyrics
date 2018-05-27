@@ -70,7 +70,7 @@ public class LCategory: NSManagedObject {
         do {
             let items = try context.fetch(request) as! [NSManagedObject]
             
-            if items.count != 1{ 
+            if items.count != 10{ 
                 for item in items {
                     context.delete(item)
                 }
@@ -88,15 +88,18 @@ public class LCategory: NSManagedObject {
     class func saveCateory(context: NSManagedObjectContext) {
         
         let entity = NSEntityDescription.entity(forEntityName: "LCategory", in: context)
-        let newArtist = NSManagedObject(entity: entity!, insertInto: context)
-        newArtist.setValue("POP", forKey: "lName")
-        newArtist.setValue(1, forKey: "lId")
         
-        do {
-            try context.save()
-        } catch {
-            print("Failed saving Category")
+        var count = 1;
+        for item in ["POP", "Classic", "Rock", "Country", "Jazz","Electronic","Freestyle","Western", "Rhythm", "Other"]  {
+            let newArtist = NSManagedObject(entity: entity!, insertInto: context)
+            newArtist.setValue(item, forKey: "lName")
+            newArtist.setValue(count, forKey: "lId")
+            do {
+                try context.save()
+            } catch {
+                print("Failed saving Category")
+            }
+            count = count + 1
         }
-        
     }
 }
