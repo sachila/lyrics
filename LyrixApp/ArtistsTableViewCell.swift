@@ -2,7 +2,7 @@
 //  ArtistsTableViewCell.swift
 //  LyrixApp
 //
-//  Created by Chintaka Wijetunga on 5/26/18.
+//  Created by Disni Sriyaratna on 5/26/18.
 //  Copyright © 2018 Infinity. All rights reserved.
 //
 

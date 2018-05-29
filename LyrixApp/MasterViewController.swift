@@ -2,7 +2,7 @@
 //  MasterViewController.swift
 //  LyrixApp
 //
-//  Created by Chintaka Wijetunga on 5/9/18.
+//  Created by Disni Sriyaratna on 5/9/18.
 //  Copyright © 2018 Infinity. All rights reserved.
 //
 
