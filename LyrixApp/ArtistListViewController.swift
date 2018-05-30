@@ -42,12 +42,13 @@ class ArtistListViewController: UIViewController,  UITableViewDataSource, UITabl
     }
     
     func loadArtist(){
-        
         let context = appDelegate.persistentContainer.viewContext
         let result = LArtist.GetAllArtists(context: context)
         for data in result  {
-            print(data.lName)
+            print(data.lName )
         }
+        lstArtistList.reloadData()
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -75,6 +76,7 @@ class ArtistListViewController: UIViewController,  UITableViewDataSource, UITabl
         if result {
             print("delete success")
         }
+        lstArtistList.reloadData()
     }
     /*
     // MARK: - Navigation
